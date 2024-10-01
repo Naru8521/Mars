@@ -5,11 +5,11 @@
 ・自動マージ  
 ・ビヘイビア/リソースパックmanifestの自動更新  
 ・バックアップ  
-・MARS_SCRIPTの取得  
+・[MARS_SCRIPT](https://github.com/Naru8521/Mars_Script)の取得  
 ・~~パケット操作~~
 
 ## 使い方
-[コチラ](https://github.com/Naru8521/Mars_Script)から、使用デバイス用の実行ファイルを任意のフォルダに配置してください。
+[コチラ](https://github.com/Naru8521/Mars/releases)から、使用デバイス用の実行ファイルを任意のフォルダに配置してください。
 
 配置した実行ファイルをダブルクリックで起動します。
 
