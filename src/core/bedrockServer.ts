@@ -110,29 +110,34 @@ export class BedrockServer {
             const server = this.serverYaml.server;
             const backup = server.backup;
 
-            await proxy.stop();
-
             // エラーによる終了かどうかを確認
             if (code !== 0 && code !== null) {
                 Util.log(`サーバープロセスがエラーコード ${code} で終了しました`, { type: "ERROR" });
                 process.exit(0);
             }
 
-            if (backup.server_stop_auto) {
-                await Util.handleBackup(this.serverYaml);
+            setTimeout(async () => {
+                if (this.serverProcess) {
+                    this.serverProcess.kill();
+                    this.serverProcess = null;
+                }
 
-                if (backup.server_auto_restart) {
+                if (backup.server_stop_auto) {
+                    await Util.handleBackup(this.serverYaml);
+
+                    if (backup.server_auto_restart) {
+                        await new BedrockServer().start(isMerge);
+                        return;
+                    }
+                }
+
+                if (isRestart) {
                     await new BedrockServer().start(isMerge);
                     return;
+                } else {
+                    process.exit(0);
                 }
-            }
-
-            if (isRestart) {
-                await new BedrockServer().start(isMerge);
-                return;
-            } else {
-                process.exit(0);
-            }
+            }, 2000);
         });
 
         this.serverProcess.on("error", (error) => {
@@ -153,10 +158,6 @@ export class BedrockServer {
 
             // サーバープロセスを停止
             this.serverProcess.stdin.write("stop\n");
-
-            // サーバープロセスを終了
-            this.serverProcess.kill();
-            this.serverProcess = null;
         } else {
             Util.log("サーバーは既に停止しています", { type: "WARN" });
         }
@@ -183,12 +184,12 @@ export class BedrockServer {
 
         await this.unzipServerFile(zipFilePath);
         Util.log("サーバーの初期化が完了しました", { type: "INFO", txtColor: "greenBright" });
-        
+
         if (this.serverYaml.proxy.host === "127.0.0.1") {
             Util.log("server.ymlのproxy.hostを設定してください。", { type: "SYSTEM", logColor: "yellow" });
             process.exit(0);
         }
-        
+
         return true;
     }
 

@@ -4,7 +4,7 @@ proxy:
   host: 192.168.1.23
 
   # プロキシのポート
-  port: 19132
+  port: 20512
 
 # マインクラフトサーバー
 server:
@@ -12,7 +12,7 @@ server:
   name: "Bedrock Server"
 
   # サーバーフォルダ
-  path: test
+  path: bedrock_server
 
   # サーバーバージョン
   version: 1.21.30.03
