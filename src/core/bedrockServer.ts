@@ -116,28 +116,26 @@ export class BedrockServer {
                 process.exit(0);
             }
 
-            setTimeout(async () => {
-                if (this.serverProcess) {
-                    this.serverProcess.kill();
-                    this.serverProcess = null;
-                }
+            if (this.serverProcess) {
+                this.serverProcess.kill();
+                this.serverProcess = null;
+            }
 
-                if (backup.server_stop_auto) {
-                    await Util.handleBackup(this.serverYaml);
+            if (backup.server_stop_auto) {
+                await Util.handleBackup(this.serverYaml);
 
-                    if (backup.server_auto_restart) {
-                        await new BedrockServer().start(isMerge);
-                        return;
-                    }
-                }
-
-                if (isRestart) {
+                if (backup.server_auto_restart) {
                     await new BedrockServer().start(isMerge);
                     return;
-                } else {
-                    process.exit(0);
                 }
-            }, 2000);
+            }
+
+            if (isRestart) {
+                await new BedrockServer().start(isMerge);
+                return;
+            } else {
+                process.exit(0);
+            }
         });
 
         this.serverProcess.on("error", (error) => {
