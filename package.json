@@ -6,6 +6,7 @@
     "@types/bun": "latest",
     "@types/cli-color": "^2.0.6",
     "@types/js-yaml": "^4.0.9",
+    "@types/uuid-1345": "^0.99.25",
     "babel-cli": "^6.26.0"
   },
   "peerDependencies": {
@@ -24,7 +25,13 @@
     "cli-color": "^2.0.4",
     "dgram": "^1.0.1",
     "js-yaml": "^4.1.0",
-    "pkg": "^5.8.1"
+    "jsonwebtoken": "^9.0.2",
+    "minecraft-data": "^3.69.0",
+    "pkg": "^5.8.1",
+    "prismarine-nbt": "^2.5.0",
+    "protodef": "^1.15.0",
+    "uuid-1345": "^1.0.2",
+    "zlib": "^1.0.5"
   },
   "bin": "lib/loader.js",
   "pkg": {
