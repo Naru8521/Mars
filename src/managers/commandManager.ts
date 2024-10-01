@@ -42,7 +42,7 @@ export class CommandManager {
                 if (log.includes("MARS:SCRIPT_COMMAND:")) {
                     log = log.replace("MARS:SCRIPT_COMMAND:", "");
 
-                    const command = JSON.parse(log); // { name: "", contents: {} }
+                    const command = JSON.parse(log);
                     const { name, contents } = command;
                     const matchingCommand = this.commands.find(v => v.name === name);
 
