@@ -28,8 +28,7 @@ export class ProxyServer {
         this.proxy_port = proxy.port;
 
         const server: Server = serverYaml.get("server");
-        const serverPath = path.join(server.path);
-        const propertyManager = new PropertyManager(path.join(serverPath, "server.properties"));
+        const propertyManager = new PropertyManager(path.join(server.path, "server.properties"));
         const properties = propertyManager.load();
 
         this.server_host = "localhost";
