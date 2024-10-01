@@ -5,7 +5,7 @@
 ・自動マージ  
 ・ビヘイビア/リソースパックmanifestの自動更新  
 ・バックアップ  
-・[MARS_SCRIPT](https://github.com/Naru8521/Mars_Script)の取得  
+・[Mars_Script](https://github.com/Naru8521/Mars_Script)の取得  
 ・~~パケット操作~~
 
 ## 使い方
