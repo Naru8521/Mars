@@ -183,6 +183,12 @@ export class BedrockServer {
 
         await this.unzipServerFile(zipFilePath);
         Util.log("サーバーの初期化が完了しました", { type: "INFO", txtColor: "greenBright" });
+        
+        if (this.serverYaml.proxy.host === "127.0.0.1") {
+            Util.log("server.ymlのproxy.hostを設定してください。", { type: "SYSTEM", logColor: "yellow" });
+            process.exit(0);
+        }
+        
         return true;
     }
 
