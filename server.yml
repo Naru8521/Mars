@@ -12,7 +12,7 @@ server:
   name: "Bedrock Server"
 
   # サーバーフォルダ
-  path: bedrock_server
+  path: test
 
   # サーバーバージョン
   version: 1.21.30.03
@@ -29,7 +29,7 @@ server:
     server_stop_auto: true
 
     # バックアップの後、自動で再起動する (エラーの場合を除く)
-    server_auto_restart: true
+    server_auto_restart: false
 
     # サーバーのバックアップ自動削除 (最大数に達したとき)
     auto_delete: true
