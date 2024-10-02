@@ -36,3 +36,8 @@ export interface sessionObject {
     clientPort: number,
     serverSocket: import("dgram").Socket
 }
+
+export interface Command {
+    name: string,
+    console: boolean   
+}

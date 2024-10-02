@@ -1,27 +1,19 @@
 import childProcess from "child_process";
 import { CustomCommand } from "../util/customCommand";
 import type { BedrockServer } from "../core/bedrockServer";
+import type { Command } from "../types";
 
 export class CommandManager {
     private customCommand: any;
-    private commands: any[]
+    private commands: Command[]
 
     /**
      * @param serverProcess 
      * @param bedrockServer 
      */
-    constructor(serverProcess: childProcess.ChildProcessWithoutNullStreams, bedrockServer: BedrockServer) {
+    constructor(serverProcess: childProcess.ChildProcessWithoutNullStreams, bedrockServer: BedrockServer, commands: Command[]) {
         this.customCommand = new CustomCommand(serverProcess, bedrockServer);
-        this.commands = [
-            { name: "stop", console: true },
-            { name: "reload", console: true },
-            { name: "restart", console: true },
-            { name: "backup", console: true },
-            { name: "merge", console: true },
-            { name: "allowlist", console: false },
-            { name: "kick", console: false },
-            { name: "transfer", console: false },
-        ];
+        this.commands = commands;
     }
 
     /**

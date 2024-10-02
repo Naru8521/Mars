@@ -59,7 +59,16 @@ export class BedrockServer {
             stdio: ["pipe", "pipe", "pipe"]
         });
 
-        const commandManager = new CommandManager(this.serverProcess, this);
+        const commandManager = new CommandManager(this.serverProcess, this, [
+            { name: "stop", console: true },
+            { name: "reload", console: true },
+            { name: "restart", console: true },
+            { name: "backup", console: true },
+            { name: "merge", console: true },
+            { name: "allowlist", console: false },
+            { name: "kick", console: false },
+            { name: "transfer", console: false }
+        ]);
 
         process.stdin.on("data", (data) => {
             if (this.serverProcess) {
