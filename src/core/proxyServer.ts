@@ -1,11 +1,10 @@
 import * as path from "path";
 import dgram from "dgram";
-import ServerPacket from "../packets/serverPacket";
-import ClientPacket from "../packets/clientPacket";
 import { YamlManager } from "../managers/yamlManager";
 import { PropertyManager } from "../managers/propertyManager";
 import { Util } from "../util/util";
 import type { Proxy, Server, sessionObject } from "../types";
+import ServerPacket from "../packets/serverPacket";
 
 export class ProxyServer {
     private clientSocket: dgram.Socket;
@@ -48,7 +47,7 @@ export class ProxyServer {
             this.clientSocket.close();
         });
 
-        this.clientSocket.on("message", (packet, rinfo) => {
+        this.clientSocket.on("message", async (packet, rinfo) => {
             this.handleClientMessage(packet, rinfo);
         });
     }
@@ -56,7 +55,7 @@ export class ProxyServer {
     /**
      * プロキシサーバーを停止
      */
-    public async stop(): Promise<void> {
+    public stop(): Promise<void> {
         Util.log("プロキシサーバーを停止します...", { type: "INFO" });
 
         return new Promise((resolve, reject) => {
@@ -84,8 +83,6 @@ export class ProxyServer {
      */
     private handleClientMessage(packet: Buffer, rinfo: dgram.RemoteInfo) {
         const sessionKey = `${rinfo.address}:${rinfo.port}`;
-
-        packet = ClientPacket(packet);
 
         if (!this.sessions.has(sessionKey)) {
             const serverSocket = dgram.createSocket("udp4");
@@ -123,13 +120,11 @@ export class ProxyServer {
      * @param sessionKey
      * @param packet
      */
-    private handleServerMessage(sessionKey: string, packet: Buffer) {
+    private async handleServerMessage(sessionKey: string, packet: Buffer) {
         const session = this.sessions.get(sessionKey);
 
-        packet = ServerPacket(packet);
-
         if (session) {
-            this.clientSocket.send(packet, session.clientPort, session.clientAddress);
+            this.clientSocket.send(ServerPacket(packet), session.clientPort, session.clientAddress);
         }
     }
 }

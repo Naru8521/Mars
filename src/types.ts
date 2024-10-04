@@ -41,3 +41,19 @@ export interface Command {
     name: string,
     console: boolean   
 }
+
+export interface Packet {
+    data: PacketData,
+    metadata: PacketMetaData
+    buffer: Buffer,
+    fullBuffer: Buffer
+}
+
+export interface PacketData {
+    name: string,
+    params: any
+}
+
+export interface PacketMetaData {
+    size: number
+}

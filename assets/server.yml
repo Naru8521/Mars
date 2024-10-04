@@ -9,7 +9,7 @@ proxy:
 # マインクラフトサーバー
 server:
   # サーバー名
-  name: "Bedrock Server"
+  name: Bedrock
 
   # サーバーフォルダ
   path: bedrock_server
