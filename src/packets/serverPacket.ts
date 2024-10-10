@@ -1,5 +1,5 @@
 import type { Packet } from "../types";
-import { createDeserializer, createSerializer } from "./packet-operation/serializer.cjs";
+import { createDeserializer, createSerializer, createProtocol } from "./packet-operation/serializer.cjs";
 import { Framer } from "./packet-operation/framer.cjs";
 
 import add_entity from "./datas/add_entity";
@@ -64,6 +64,8 @@ import client_to_server_handshake from "./datas/client_to_server_handshake";
 import settings_command from "./datas/settings_command";
 import client_cache_miss_response from "./datas/client_cache_miss_response";
 import structure_template_data_export_request from "./datas/structure_template_data_export_request";
+import MinecraftData from "minecraft-data";
+import { test } from "./test";
 
 const serializer: any = createSerializer("1.21.30");
 const deserializer: any = createDeserializer("1.21.30");
@@ -132,12 +134,15 @@ const packetHandlers: Record<string, (deserialized: any) => Packet> = {
     update_subchunk_blocks
 };
 
+test();
+
 /**
  * サーバーからのパケットを解析
  * @param packet
  * @returns 
  */
 export default function ServerPacket(packet: Buffer): Buffer {
+    /*
     try {
         const des = deserializer.parsePacketBuffer(packet);
         const { name } = des.data;
@@ -152,6 +157,7 @@ export default function ServerPacket(packet: Buffer): Buffer {
             console.log(des);
         }
     } catch (error) { }
+    */
 
     return packet;
 }

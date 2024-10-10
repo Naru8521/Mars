@@ -47,7 +47,7 @@ export class ProxyServer {
             this.clientSocket.close();
         });
 
-        this.clientSocket.on("message", async (packet, rinfo) => {
+        this.clientSocket.on("message", (packet, rinfo) => {
             this.handleClientMessage(packet, rinfo);
         });
     }

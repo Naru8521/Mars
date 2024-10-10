@@ -52,7 +52,7 @@ export class BedrockServer {
 
         // プロキシサーバーを起動
         const proxy = new ProxyServer();
-
+        
         proxy.start();
 
         this.serverProcess = childProcess.spawn(this.getServerExecutablePath(), [], {

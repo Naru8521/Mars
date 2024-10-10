@@ -10,28 +10,30 @@
     "babel-cli": "^6.26.0"
   },
   "peerDependencies": {
-    "typescript": "^5.0.0"
+    "typescript": "^5.6.2"
   },
   "scripts": {
     "start": "bun run src/loader.ts"
   },
   "type": "module",
   "dependencies": {
-    "@babel/cli": "^7.25.6",
-    "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.4",
-    "@minecraft/server": "^1.15.0-beta.1.21.31-stable",
+    "@babel/cli": "^7.25.7",
+    "@babel/core": "^7.25.7",
+    "@babel/preset-env": "^7.25.7",
+    "@minecraft/server": "^1.15.0-rc.1.21.40-preview.25",
     "adm-zip": "^0.5.16",
-    "bedrock-protocol": "^3.40.0",
     "cli-color": "^2.0.4",
     "dgram": "^1.0.1",
+    "i": "^0.3.7",
     "js-yaml": "^4.1.0",
-    "jsonwebtoken": "^9.0.2",
+    "jsp-raknet": "^2.2.0",
     "minecraft-data": "^3.69.0",
     "minecraft-protocol": "^1.47.0",
+    "npm": "^10.9.0",
     "pkg": "^5.8.1",
     "prismarine-nbt": "^2.5.0",
     "protodef": "^1.15.0",
+    "raknet-native": "^1.2.3",
     "uuid-1345": "^1.0.2",
     "zlib": "^1.0.5"
   },
